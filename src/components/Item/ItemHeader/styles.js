@@ -6,6 +6,9 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'center',
     marginBottom: 5,
+    borderBottomColor: '#ffffff',
+    paddingBottom: 5,
+    borderBottomWidth: 1,
   },
 
   titleText: {
