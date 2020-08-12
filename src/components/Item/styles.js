@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
-  itemContainer: {
+  wrapper: {
     backgroundColor: '#AAEAFB',
     flexDirection: 'row',
     minHeight: 177,
@@ -9,6 +9,15 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     paddingHorizontal: 15,
     paddingVertical: 30,
+    // Adding shadow
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
   },
 
   contentContainer: {
@@ -26,7 +35,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'space-around',
-    marginLeft: 22,
+    marginLeft: 20,
   },
 });
 

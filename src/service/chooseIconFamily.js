@@ -45,7 +45,7 @@ function chooseIconFamily(fontFamily, iconName, iconSize, iconColor) {
     case 'SimpleLineIcons':
       return <SimpleLineIcons name={iconName} size={iconSize} color={iconColor} />;
     case 'Zocial':
-      return <Zocial />;
+      return <Zocial name={iconName} size={iconSize} color={iconColor} />;
   }
 }
 export default chooseIconFamily;
