@@ -60,6 +60,8 @@ This project was made using the follow technologies:
 
 # :rocket: Features
 
+**_🏗 Soon_**
+
 # :construction_worker: How to run
 
 To run the project you need a cellphone with the app of [expo](https://play.google.com/store/apps/details?id=host.exp.exponent) instaled or a emulator android/ios.
