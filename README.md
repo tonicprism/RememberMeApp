@@ -86,6 +86,6 @@ Feel free to **file a new issue** with a respective title and description on the
 
 Check out the [contributing](./CONTRIBUTING.md) page to see the best places to file issues, start discussions and begin contributing.
 
-# ✌ Made with 💙 by [Luiz Gustavo](https://github.com/tonicprism/RememberMeApp/)
+# ✌ Made with 💙 by [Luiz Gustavo](https://github.com/tonicprism/)
 
 Give a ⭐️ if this project helped you!
