@@ -1,5 +1,5 @@
 <p align="center">
-   <img src="./assets/logo.png" width="150"/>
+   <img src="./assets/remember-me-app-logo.png" width="150"/>
 </p>
  
 <h1 align="center">Remember ME App</h1>
