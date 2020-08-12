@@ -22,7 +22,7 @@
    </a>
 </p>
 
-> The Remember Me app is a app to remember to do some activity in some amount of time.
+> ⏰ The **Remember Me App** is a app to remember to do some activity in some amount of time.
 
 <p align="center">
     <a href="README.md">English</a>
