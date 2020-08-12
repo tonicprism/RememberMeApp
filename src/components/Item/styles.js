@@ -2,18 +2,31 @@ import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   itemContainer: {
-    backgroundColor: '#195C92',
+    backgroundColor: '#AAEAFB',
+    flexDirection: 'row',
     minHeight: 177,
-    marginBottom: 33,
-    borderRadius: 10,
-    paddingHorizontal: 20,
+    marginBottom: 20,
+    borderRadius: 30,
+    paddingHorizontal: 15,
     paddingVertical: 30,
   },
+
+  contentContainer: {
+    flexDirection: 'column',
+  },
+
   itemText: {
     fontSize: 16,
     fontWeight: 'bold',
-    lineHeight: 28,
-    color: '#AAEAFB',
+    lineHeight: 20,
+    color: '#ffffff',
+  },
+
+  buttonsContainer: {
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'space-around',
+    marginLeft: 22,
   },
 });
 

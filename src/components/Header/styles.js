@@ -7,13 +7,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: '100%',
     height: 83,
+    borderBottomStartRadius: 25,
+    borderBottomEndRadius: 25,
+    marginBottom: 10,
   },
   headerText: {
     marginTop: 10,
     fontSize: 36,
     fontWeight: 'bold',
     lineHeight: 42,
-    color: '#ffffff',
+    color: '#AAEAFB',
   },
 });
 

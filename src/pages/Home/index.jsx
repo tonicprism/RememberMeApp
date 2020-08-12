@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, Text, Alert } from 'react-native';
+import { View, Text, Alert, TouchableOpacity, ScrollView } from 'react-native';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 import { Header, Item } from '../../components/index';
 
@@ -13,10 +14,18 @@ export default function Home() {
   return (
     <View style={styles.wrap}>
       <Header />
-      <View style={styles.container}>
-        <Item onPress={alertTest} />
-        <Item />
-      </View>
+      <ScrollView>
+        <View style={styles.container}>
+          <Item onPress={alertTest} />
+          <Item onPress={alertTest} />
+          <Item onPress={alertTest} />
+          <Item />
+        </View>
+      </ScrollView>
+
+      <TouchableOpacity style={styles.floatButton} onPress={alertTest}>
+        <MaterialCommunityIcons name="pencil" size={30} color="#ffffff" />
+      </TouchableOpacity>
     </View>
   );
 }

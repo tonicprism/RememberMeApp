@@ -7,7 +7,7 @@ import styles from './styles';
 export default function ItemHeader({ title, iconName }) {
   return (
     <View style={styles.container}>
-      <Ionicons style={styles.icon} name={iconName} size={30} color="#ffffff" />
+      <Ionicons style={styles.icon} name={iconName} size={30} color="#195C92" />
       <Text style={styles.titleText}>{title}</Text>
     </View>
   );

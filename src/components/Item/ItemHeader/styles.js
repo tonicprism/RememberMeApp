@@ -5,18 +5,16 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'center',
-    marginBottom: 5,
-    borderBottomColor: '#ffffff',
+    borderColor: '#195C92',
     paddingBottom: 5,
-    borderBottomWidth: 1,
+    borderRadius: 10,
   },
 
   titleText: {
     marginLeft: 8,
-    fontSize: 24,
+    fontSize: 30,
     fontWeight: 'bold',
-    lineHeight: 28,
-    color: '#ffffff',
+    color: '#195C92',
   },
 });
 

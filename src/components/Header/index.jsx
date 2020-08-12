@@ -6,7 +6,9 @@ import styles from './styles';
 export default function Header() {
   return (
     <View style={styles.headerContainer}>
-      <Text style={styles.headerText}>Remember Me</Text>
+      <Text style={styles.headerText}>
+        Remember <Text style={{ color: '#ffffff' }}>Me</Text>
+      </Text>
     </View>
   );
 }

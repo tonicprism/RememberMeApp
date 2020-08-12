@@ -1,10 +1,14 @@
-import React from "react";
-import { View, Text } from "react-native";
+import React from 'react';
+import { View, Text, TouchableOpacity } from 'react-native';
 
-export default function Button() {
+import chooseIconFamily from '../../service/chooseIconFamily';
+
+import styles from './styles';
+
+export default function Button({ fontFamily, iconName, iconSize, iconColor, style, onPress }) {
   return (
-    <View>
-      <Text>Hello world</Text>
-    </View>
+    <TouchableOpacity style={[styles.button, style]} onPress={onPress}>
+      {chooseIconFamily(fontFamily, iconName, iconSize, iconColor)}
+    </TouchableOpacity>
   );
 }
