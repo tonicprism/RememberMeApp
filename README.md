@@ -32,10 +32,7 @@
 
 <div align="center">
   <sub>The Remember Me app project. Built with ❤︎ by
-    <a href="https://github.com/tonicprism">Luiz Gustavo</a> and
-    <a href="">
-      contributors
-    </a>
+    <a href="https://github.com/tonicprism">Luiz Gustavo</a>
   </sub>
 </div>
 
@@ -49,9 +46,9 @@
 
 ### Screenshots
 
-<div>
-  <img src="./.github/screenshot00.jpeg">
-  <img src="./.github/screenshot00.jpeg">
+<div float="left">
+  <img src="./.github/screenshot00.jpeg" width="100">
+  <img src="./.github/screenshot00.jpeg" width="100">
 </div>
 
 # :computer: Technologies
