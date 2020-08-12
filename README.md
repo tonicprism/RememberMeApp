@@ -47,8 +47,8 @@
 ### Screenshots
 
 <div float="left">
-  <img src="./.github/screenshot00.jpeg" width="100">
-  <img src="./.github/screenshot00.jpeg" width="100">
+  <img src="./.github/screenshot00.jpeg" width="300">
+  <img src="./.github/screenshot00.jpeg" width="300">
 </div>
 
 # :computer: Technologies
