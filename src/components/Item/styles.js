@@ -20,8 +20,27 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
 
+  /* BEGIN CONTAINERS */
+
   contentContainer: {
     flexDirection: 'column',
+  },
+
+  itemTextTitleContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  itemTextContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  /* END CONTAINERS */
+
+  itemTextTitle: {
+    fontSize: 17,
+    fontWeight: 'bold',
+    lineHeight: 20,
+    color: '#ffffff',
   },
 
   itemText: {
@@ -29,13 +48,22 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     lineHeight: 20,
     color: '#ffffff',
+    marginLeft: 5,
   },
 
-  buttonsContainer: {
+  buttonsContainerItem: {
     flexDirection: 'column',
     alignItems: 'center',
+    justifyContent: 'flex-end',
+    marginLeft: 4,
+  },
+
+  buttonsContainerModal: {
+    minWidth: 300,
+    marginTop: 5,
+    flexDirection: 'row',
+    alignItems: 'center',
     justifyContent: 'space-around',
-    marginLeft: 20,
   },
 });
 
