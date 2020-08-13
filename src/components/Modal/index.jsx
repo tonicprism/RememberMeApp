@@ -12,8 +12,8 @@ function _Modal({ isVisible, children, onPress, style }) {
       onSwipeComplete={onPress}
       swipeDirection="down"
       onBackdropPress={onPress}
-      backdropColor="#ffffff"
-      backdropOpacity={0}
+      backdropColor="#000000"
+      backdropOpacity={0.1}
     >
       <View onPress={onPress} style={[styles.modalWrapper, style]}>
         {children}
