@@ -2,7 +2,7 @@ import { StyleSheet, Dimensions } from 'react-native';
 const { width, height } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
-  wrap: {
+  wrapped: {
     flex: 1,
   },
 
@@ -22,6 +22,31 @@ const styles = StyleSheet.create({
     right: width / 2.5,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+
+  modalContainer: {
+    flexDirection: 'column',
+    padding: 30,
+    minHeight: 300,
+  },
+
+  modalHeader: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+  },
+
+  modalHeaderTitle: {
+    color: '#ffffff',
+    fontWeight: 'bold',
+    marginLeft: 10,
+    fontSize: 25,
+  },
+
+  modalContent: {
+    flexDirection: 'column',
+    alignItems: 'center',
+    marginTop: 20,
   },
 });
 
