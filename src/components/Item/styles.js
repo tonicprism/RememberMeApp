@@ -22,8 +22,11 @@ const styles = StyleSheet.create({
 
   /* BEGIN CONTAINERS */
 
-  contentContainer: {
+  itemBodyContainer: {
     flexDirection: 'column',
+    borderColor: '#195C92',
+    paddingRight: 5,
+    borderRightWidth: 2,
   },
 
   itemTextTitleContainer: {

@@ -17,20 +17,13 @@ export default function Item({ handlerModal, visibleModal }) {
   return (
     <View style={styles.wrapper}>
       {/* BEGIN ITEM CONTENT */}
-      <TouchableOpacity onPress={handlerModal} style={styles.contentContainer}>
+      <TouchableOpacity onPress={handlerModal}>
         {/* BEGIN ITEM HEADER */}
         <ItemHeader title="Em 10 minutos" iconName="md-time" color="#195C92" fontSize={30} />
         {/* END ITEM HEADER */}
 
         {/* BEGIN ITEM BODY */}
-        <ItemBody
-          style={{
-            flexDirection: 'column',
-            borderColor: '#195C92',
-            paddingRight: 5,
-            borderRightWidth: 2,
-          }}
-        >
+        <ItemBody style={styles.itemBodyContainer}>
           <View style={styles.itemTextTitleContainer}>
             <Button
               iconFamily="MaterialCommunityIcons"
