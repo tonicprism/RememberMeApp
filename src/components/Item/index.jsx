@@ -5,7 +5,6 @@ import ItemHeader from './ItemHeader';
 import ItemBody from './ItemBody';
 import Modal from '../Modal';
 import Input from '../Input';
-
 import Button from '../Button';
 
 import styles from './styles';
@@ -27,9 +26,9 @@ export default function Item({ handlerModal, visibleModal }) {
         <ItemBody
           style={{
             flexDirection: 'column',
-            backgroundColor: '#195C92',
-            borderRadius: 10,
-            padding: 10,
+            borderColor: '#195C92',
+            paddingRight: 5,
+            borderRightWidth: 2,
           }}
         >
           <View style={styles.itemTextTitleContainer}>
@@ -49,11 +48,9 @@ export default function Item({ handlerModal, visibleModal }) {
               iconColor="#ffffff"
               style={{ marginLeft: 5 }}
             />
-            {/* O QUE FAZER --> Criado em {date(dd/mm/aa)} às {time(hh/mm)} */}
+            {/* [] O QUE FAZER --> Criado em {date(dd/mm/aa)} às {time(hh/mm)} */}
             <Text style={styles.itemText}>Criado em 13/08/20 às 15:23</Text>
           </View>
-          {/* [x] Adicionar description */}
-          {/* [x] Adicionar hora de criação */}
         </ItemBody>
         {/* END ITEM BODY */}
       </TouchableOpacity>
@@ -66,9 +63,15 @@ export default function Item({ handlerModal, visibleModal }) {
           iconName="checkcircleo"
           iconSize={20}
           iconColor="green"
-          style={{ marginBottom: 20 }}
+          style={{ marginBottom: 9 }}
         />
-        <Button iconFamily="EvilIcons" iconName="trash" iconSize={35} iconColor="red" style={{}} />
+        <Button
+          iconFamily="EvilIcons"
+          iconName="trash"
+          iconSize={35}
+          iconColor="red"
+          style={{ marginBottom: 13 }}
+        />
       </View>
       {/* END BUTTONS CONTAINER */}
 
@@ -81,6 +84,7 @@ export default function Item({ handlerModal, visibleModal }) {
           alignItems: 'flex-start',
           margin: 10,
           padding: 20,
+          paddingLeft: 10,
           marginTop: 2,
         }}
       >
@@ -104,7 +108,7 @@ export default function Item({ handlerModal, visibleModal }) {
               iconColor="#ffffff"
               style={{ marginLeft: 5 }}
             />
-            {/* O QUE FAZER --> Criado em {date(dd/mm/aa)} às {time(hh/mm)} */}
+            {/* [] O QUE FAZER -->'Criado em {date(dd/mm/aa)} às {time(hh/mm)}' */}
             <Text style={styles.itemText}>Criado em 13/08/20 às 15:23</Text>
           </View>
           <Input
@@ -113,8 +117,6 @@ export default function Item({ handlerModal, visibleModal }) {
             placeholder="Conteúdo da lembrança?"
             style={{ marginTop: 10, paddingLeft: 15, padding: 0 }}
           />
-          {/* [x] Adicionar description */}
-          {/* [x] Adicionar hora de criação */}
         </ItemBody>
         {/* END ITEM BODY */}
 

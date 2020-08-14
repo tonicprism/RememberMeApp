@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
     minHeight: 177,
     marginBottom: 20,
     borderRadius: 30,
-    paddingHorizontal: 15,
+    paddingHorizontal: 10,
     paddingVertical: 30,
     // Adding shadow
     shadowColor: '#000',
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'flex-end',
-    marginLeft: 4,
+    padding: 2,
   },
 
   buttonsContainerModal: {

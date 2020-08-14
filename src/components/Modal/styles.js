@@ -7,12 +7,12 @@ const styles = StyleSheet.create({
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
-      height: 6,
+      height: 1,
     },
-    shadowOpacity: 0.37,
-    shadowRadius: 7.49,
+    shadowOpacity: 0.22,
+    shadowRadius: 2.22,
 
-    elevation: 12,
+    elevation: 3,
   },
 });
 

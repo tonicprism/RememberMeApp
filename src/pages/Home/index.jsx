@@ -65,6 +65,7 @@ export default function Home() {
             onChangeText={(text) => setTimeEndState(text)}
             keyboardType="numeric"
             placeholder="Em quantos minutos você deve ser lembrado? (Em minutos)"
+            style={{ minWidth: 300 }}
           />
 
           <Input
@@ -72,14 +73,14 @@ export default function Home() {
             keyboardType="default"
             maxLength={50}
             placeholder="Título do que você deve ser lembrado?"
-            style={{ width: 300 }}
+            style={{ minWidth: 300 }}
           />
           <Input
             onChangeText={(text) => setMemoryBodyState(text)}
             keyboardType="default"
             maxLength={100}
             placeholder="Conteúdo da lembrança?"
-            style={{ width: 300 }}
+            style={{ minWidth: 300 }}
           />
         </View>
       </Modal>
