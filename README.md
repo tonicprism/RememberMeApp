@@ -42,7 +42,6 @@
 - [How to run](#construction_worker-how-to-run)
 - [Issues](#bug-issues)
 - [Contributing](#tada-contributing)
-- [License](#closed_book-license)
 
 ### Screenshots
 
