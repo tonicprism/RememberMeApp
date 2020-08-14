@@ -24,16 +24,16 @@ export default function Item({ handlerModal, visibleModal }) {
 
         {/* BEGIN ITEM BODY */}
         <ItemBody style={styles.itemBodyContainer}>
-          <View style={styles.itemTextTitleContainer}>
+          <View style={styles.titleTextContainer}>
             <Button
               iconFamily="MaterialCommunityIcons"
               iconName="format-text"
               iconSize={30}
               iconColor="#ffffff"
             />
-            <Text style={styles.itemTextTitle}>Enviar video para o grupo da sala</Text>
+            <Text style={styles.descriptionTextTitle}>Enviar video para o grupo da sala</Text>
           </View>
-          <View style={styles.itemTextContainer}>
+          <View style={styles.dateTextContainer}>
             <Button
               iconFamily="MaterialCommunityIcons"
               iconName="update"
@@ -42,7 +42,7 @@ export default function Item({ handlerModal, visibleModal }) {
               style={{ marginLeft: 5 }}
             />
             {/* [] O QUE FAZER --> Criado em {date(dd/mm/aa)} às {time(hh/mm)} */}
-            <Text style={styles.itemText}>Criado em 13/08/20 às 15:23</Text>
+            <Text style={styles.dateText}>Criado em 13/08/20 às 15:23</Text>
           </View>
         </ItemBody>
         {/* END ITEM BODY */}
@@ -102,7 +102,7 @@ export default function Item({ handlerModal, visibleModal }) {
               style={{ marginLeft: 5 }}
             />
             {/* [] O QUE FAZER -->'Criado em {date(dd/mm/aa)} às {time(hh/mm)}' */}
-            <Text style={styles.itemText}>Criado em 13/08/20 às 15:23</Text>
+            <Text style={styles.dateText}>Criado em 13/08/20 às 15:23</Text>
           </View>
           <Input
             keyboardType="default"

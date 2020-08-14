@@ -29,24 +29,24 @@ const styles = StyleSheet.create({
     borderRightWidth: 2,
   },
 
-  itemTextTitleContainer: {
+  titleTextContainer: {
     flexDirection: 'row',
     alignItems: 'center',
   },
-  itemTextContainer: {
+  dateTextContainer: {
     flexDirection: 'row',
     alignItems: 'center',
   },
   /* END CONTAINERS */
 
-  itemTextTitle: {
+  descriptionTextTitle: {
     fontSize: 17,
     fontWeight: 'bold',
     lineHeight: 20,
     color: '#ffffff',
   },
 
-  itemText: {
+  dateText: {
     fontSize: 16,
     fontWeight: 'bold',
     lineHeight: 20,
