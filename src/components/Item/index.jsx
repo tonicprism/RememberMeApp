@@ -13,13 +13,24 @@ import styles from './styles';
  * @params
  *
  */
-export default function Item({ handlerModal, visibleModal }) {
+export default function Item({
+  ItemId,
+  timeToRemember,
+  titleOfMemory,
+  contentOfMemory,
+  createdAtDate,
+  createdAtHours,
+  handlerModal,
+  visibleModal,
+  deleteItem,
+  checkItem,
+}) {
   return (
     <View style={styles.wrapper}>
       {/* BEGIN ITEM CONTENT */}
       <TouchableOpacity onPress={handlerModal}>
         {/* BEGIN ITEM HEADER */}
-        <ItemHeader title="Em 10 minutos" iconName="md-time" color="#195C92" fontSize={30} />
+        <ItemHeader title={timeToRemember} iconName="md-time" color="#195C92" fontSize={30} />
         {/* END ITEM HEADER */}
 
         {/* BEGIN ITEM BODY */}
@@ -31,7 +42,7 @@ export default function Item({ handlerModal, visibleModal }) {
               iconSize={30}
               iconColor="#ffffff"
             />
-            <Text style={styles.descriptionTextTitle}>Enviar video para o grupo da sala</Text>
+            <Text style={styles.descriptionTextTitle}>{titleOfMemory}</Text>
           </View>
           <View style={styles.dateTextContainer}>
             <Button
@@ -42,7 +53,7 @@ export default function Item({ handlerModal, visibleModal }) {
               style={{ marginLeft: 5 }}
             />
             {/* [] O QUE FAZER --> Criado em {date(dd/mm/aa)} às {time(hh/mm)} */}
-            <Text style={styles.dateText}>Criado em 13/08/20 às 15:23</Text>
+            <Text style={styles.dateText}>{`Criado em ${createdAtDate} às ${createdAtHours}`}</Text>
           </View>
         </ItemBody>
         {/* END ITEM BODY */}
@@ -57,6 +68,7 @@ export default function Item({ handlerModal, visibleModal }) {
           iconSize={20}
           iconColor="green"
           style={{ marginBottom: 9 }}
+          onPress={checkItem}
         />
         <Button
           iconFamily="EvilIcons"
@@ -64,6 +76,7 @@ export default function Item({ handlerModal, visibleModal }) {
           iconSize={35}
           iconColor="red"
           style={{ marginBottom: 13 }}
+          onPress={deleteItem}
         />
       </View>
       {/* END BUTTONS CONTAINER */}
