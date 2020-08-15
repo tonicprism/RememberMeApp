@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import useSWR from 'swr';
 import { View, Text, Alert, TouchableOpacity, ScrollView } from 'react-native';
 
 import { Header, Item, Button, Modal, Input } from '../../components/index';
@@ -8,12 +9,11 @@ import Data from '../../service/DATA';
 import styles from './styles';
 
 import moment from 'moment';
-import portugueseLanguage from 'moment/locale/pt-br';
-moment.locale('pt-br', portugueseLanguage);
 
 export default function Home() {
   const [visibleCreateModal, setVisibleCreateModal] = useState(false);
   const [visibleItemModal, setVisibleItemModal] = useState(false);
+  const [visibleNoItemsModal, setVisibleNoItemsModal] = useState(false);
 
   /* ITEMS STATES */
   const [items, setItems] = useState([]);
@@ -21,29 +21,48 @@ export default function Home() {
 
   /* INPUTS STATES */
   const [id, setId] = useState('');
-  const [timeToRemember, setTimeToRemember] = useState(0);
-  const [timeToRememberInTyping, setTimeToRememberInTyping] = useState(0);
+  const [itemId, setItemId] = useState(1);
+  const [itemRemoved, setItemRemoved] = useState('');
+  const [timeToRemember, setTimeToRemember] = useState('');
   const [titleOfMemory, setTitleOfMemory] = useState('');
-  const [titleOfMemoryInTyping, setTitleOfMemoryInTyping] = useState('');
   const [contentOfMemory, setContentOfMemory] = useState('');
-  const [contentOfMemoryInTyping, setContentOfMemoryInTyping] = useState('');
 
-  function store(item) {
-    const findItem = items.find((item) => item.id === items.id);
-    if (findItem) return alert('Already exist a item with this id');
-    return items === null ? setItems([item]) : setItems([...items, item]);
+  function storeItem() {
+    if (timeToRemember === '') {
+      alert('Miss some field, please try again...');
+      setVisibleCreateModal(!visibleCreateModal);
+    } else {
+      handlerCreateMemoryModal();
+      setId(id + 1);
+      setItems([
+        ...items,
+        {
+          id: id,
+          timeToRemember: Math.round(timeToRemember * 60),
+          titleOfMemory: titleOfMemory,
+          contentOfMemory: contentOfMemory,
+          createdAtDate: moment().format('L'),
+          createdAtHours: moment().format('LT'),
+          timeStamp: moment().format(),
+        },
+      ]);
+    }
   }
 
-  function index() {
+  function indexItems() {
     return items;
   }
 
-  function remove(itemId) {
-    setItems([items.splice(itemId, -1)]);
+  function removeAllItem() {
+    setItems([]);
   }
 
-  function alertTest() {
-    Alert.alert('Hello', 'Opa');
+  function alertTest1() {
+    Alert.alert('Alerta de teste 1', 'teste');
+  }
+
+  function alertTest2() {
+    Alert.alert('Alerta de teste 2', 'teste');
   }
 
   function handlerOpenItemModal() {
@@ -54,22 +73,49 @@ export default function Home() {
     setVisibleCreateModal(!visibleCreateModal);
   }
 
+  /**const ItemsUpdate = () => {
+    const { data: items } = useSWR(indexItems, {
+      revalidateOnMount: true,
+      refreshInterval: 3000,
+      loadingTimeout: 4000,
+      errorRetryInterval: 5000,
+    });
+  };*/
+
   return (
     <View style={styles.wrapped}>
       <Header />
       <ScrollView>
         <View style={styles.container}>
-          {items.map((item) => (
-            <Item
-              key={item.id}
-              timeToRemember={item.timeToRemember}
-              titleOfMemory={item.titleOfMemory}
-              contentOfMemory={item.contentOfMemory}
-              createdAtDate={item.createdAtDate}
-              createdAtHours={item.createdAtHours}
-              deleteItem={alert()}
-            />
-          ))}
+          {console.log(items)}
+          {items.length < 1 ? (
+            <View
+              style={{
+                marginVertical: '50%',
+                minHeight: '20%',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+            >
+              <Text style={{ color: '#195C92', fontSize: 20 }}>No have memories at here...</Text>
+            </View>
+          ) : (
+            items.map((item) => (
+              <Item
+                key={item.id}
+                itemId={itemId}
+                timeToRemember={Math.round(item.timeToRemember / 60)}
+                titleOfMemory={item.titleOfMemory}
+                contentOfMemory={item.contentOfMemory}
+                createdAtDate={item.createdAtDate}
+                createdAtHours={item.createdAtHours}
+                confirmButton={alertTest1}
+                deleteButton={removeAllItem}
+                handlerModal={handlerOpenItemModal}
+                visibleModal={visibleItemModal}
+              />
+            ))
+          )}
         </View>
       </ScrollView>
 
@@ -91,45 +137,34 @@ export default function Home() {
 
         <View style={styles.modalContent}>
           <Input
-            onChangeText={(text) => setTimeToRemember(text)}
+            onChangeText={(value) => setTimeToRemember(value)}
+            defaultValue={timeToRemember}
             keyboardType="numeric"
             placeholder="Em quantos minutos você deve ser lembrado? (Em minutos)"
+            clearTextOnFocus={true}
             style={{ minWidth: 300 }}
           />
 
           <Input
             onChangeText={(text) => setTitleOfMemory(text)}
             keyboardType="default"
+            defaultValue={titleOfMemory}
             maxLength={50}
             placeholder="Título do que você deve ser lembrado?"
+            clearTextOnFocus={true}
             style={{ minWidth: 300 }}
           />
           <Input
             onChangeText={(text) => setContentOfMemory(text)}
             keyboardType="default"
+            defaultValue={contentOfMemory}
             maxLength={100}
             placeholder="Conteúdo da lembrança?"
+            clearTextOnFocus={true}
             style={{ minWidth: 300 }}
           />
         </View>
-        <Button
-          onPress={() => {
-            handlerCreateMemoryModal();
-            setId(id + 1);
-            setItems([
-              ...items,
-              {
-                id: id,
-                timeToRemember: timeToRemember,
-                titleOfMemory: titleOfMemory,
-                contentOfMemory: contentOfMemory,
-                createdAtDate: moment().format('L'),
-                createdAtHours: moment().format('LT'),
-                timeStamp: moment().format(),
-              },
-            ]);
-          }}
-        >
+        <Button onPress={storeItem}>
           <Text>Create Item</Text>
         </Button>
       </Modal>

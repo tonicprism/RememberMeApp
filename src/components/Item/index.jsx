@@ -14,7 +14,7 @@ import styles from './styles';
  *
  */
 export default function Item({
-  ItemId,
+  itemId,
   timeToRemember,
   titleOfMemory,
   contentOfMemory,
@@ -22,15 +22,20 @@ export default function Item({
   createdAtHours,
   handlerModal,
   visibleModal,
-  deleteItem,
-  checkItem,
+  confirmButton,
+  deleteButton,
 }) {
   return (
     <View style={styles.wrapper}>
       {/* BEGIN ITEM CONTENT */}
       <TouchableOpacity onPress={handlerModal}>
         {/* BEGIN ITEM HEADER */}
-        <ItemHeader title={timeToRemember} iconName="md-time" color="#195C92" fontSize={30} />
+        <ItemHeader
+          title={`Em ${timeToRemember} minutos`}
+          iconName="md-time"
+          color="#195C92"
+          fontSize={30}
+        />
         {/* END ITEM HEADER */}
 
         {/* BEGIN ITEM BODY */}
@@ -68,7 +73,7 @@ export default function Item({
           iconSize={20}
           iconColor="green"
           style={{ marginBottom: 9 }}
-          onPress={checkItem}
+          onPress={confirmButton}
         />
         <Button
           iconFamily="EvilIcons"
@@ -76,7 +81,7 @@ export default function Item({
           iconSize={35}
           iconColor="red"
           style={{ marginBottom: 13 }}
-          onPress={deleteItem}
+          onPress={deleteButton}
         />
       </View>
       {/* END BUTTONS CONTAINER */}
@@ -104,7 +109,7 @@ export default function Item({
               iconSize={30}
               iconColor="#ffffff"
             />
-            <Text style={styles.itemTextTitle}>Enviar video para o grupo da sala</Text>
+            <Text style={styles.descriptionTextTitle}>{titleOfMemory}</Text>
           </View>
           <View style={styles.itemTextContainer}>
             <Button
@@ -115,12 +120,13 @@ export default function Item({
               style={{ marginLeft: 5 }}
             />
             {/* [] O QUE FAZER -->'Criado em {date(dd/mm/aa)} às {time(hh/mm)}' */}
-            <Text style={styles.dateText}>Criado em 13/08/20 às 15:23</Text>
+            <Text style={styles.dateText}>{`Criado em ${createdAtDate} às ${createdAtHours}`}</Text>
           </View>
           <Input
             keyboardType="default"
             maxLength={100}
             placeholder="Conteúdo da lembrança?"
+            defaultValue={contentOfMemory}
             style={{ marginTop: 10, paddingLeft: 15, padding: 0 }}
           />
         </ItemBody>

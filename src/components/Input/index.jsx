@@ -4,7 +4,15 @@ import { TextInput, View, Text } from 'react-native';
 
 import styles from './styles';
 
-function Input({ placeholder, onChangeText, defaultValue, maxLength, keyboardType, style }) {
+function Input({
+  placeholder,
+  onChangeText,
+  defaultValue,
+  maxLength,
+  keyboardType,
+  clearTextOnFocus,
+  style,
+}) {
   return (
     <View>
       <TextInput
@@ -17,6 +25,7 @@ function Input({ placeholder, onChangeText, defaultValue, maxLength, keyboardTyp
         numberOfLines={3}
         maxLength={maxLength}
         keyboardType={keyboardType}
+        clearTextOnFocus={true}
       />
     </View>
   );
