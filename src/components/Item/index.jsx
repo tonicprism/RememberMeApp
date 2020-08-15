@@ -40,6 +40,7 @@ export default function Item({
 
         {/* BEGIN ITEM BODY */}
         <ItemBody style={styles.itemBodyContainer}>
+          <Text>{itemId}</Text>
           <View style={styles.titleTextContainer}>
             <Button
               iconFamily="MaterialCommunityIcons"
@@ -85,73 +86,6 @@ export default function Item({
         />
       </View>
       {/* END BUTTONS CONTAINER */}
-
-      {/* BEGIN MODAL */}
-      <Modal
-        isVisible={visibleModal}
-        onPress={handlerModal}
-        style={{
-          justifyContent: 'center',
-          alignItems: 'flex-start',
-          margin: 10,
-          padding: 20,
-          paddingLeft: 10,
-          marginTop: 2,
-        }}
-      >
-        <ItemHeader title="Em 10 minutos" iconName="md-time" color="#fff" fontSize={25} />
-        {/* BEGIN ITEM BODY */}
-        <ItemBody style={{ flexDirection: 'column' }}>
-          <Text>{itemId}</Text>
-          <View style={styles.itemTextTitleContainer}>
-            <Button
-              iconFamily="MaterialCommunityIcons"
-              iconName="format-text"
-              iconSize={30}
-              iconColor="#ffffff"
-            />
-            <Text style={styles.descriptionTextTitle}>{titleOfMemory}</Text>
-          </View>
-          <View style={styles.itemTextContainer}>
-            <Button
-              iconFamily="MaterialCommunityIcons"
-              iconName="update"
-              iconSize={20}
-              iconColor="#ffffff"
-              style={{ marginLeft: 5 }}
-            />
-            {/* [] O QUE FAZER -->'Criado em {date(dd/mm/aa)} às {time(hh/mm)}' */}
-            <Text style={styles.dateText}>{`Criado em ${createdAtDate} às ${createdAtHours}`}</Text>
-          </View>
-          <Input
-            keyboardType="default"
-            maxLength={100}
-            placeholder="Conteúdo da lembrança?"
-            defaultValue={contentOfMemory}
-            style={{ marginTop: 10, paddingLeft: 15, padding: 0 }}
-          />
-        </ItemBody>
-        {/* END ITEM BODY */}
-
-        <View style={styles.buttonsContainerModal}>
-          <Button
-            iconFamily="MaterialCommunityIcons"
-            iconColor="#ffffff"
-            iconSize={30}
-            iconName="pencil"
-            onPress={handlerModal}
-            style={{ marginRight: 20 }}
-          />
-          <Button
-            iconFamily="MaterialCommunityIcons"
-            iconColor="#ffffff"
-            iconSize={30}
-            iconName="close"
-            onPress={handlerModal}
-          />
-        </View>
-      </Modal>
-      {/* END MODAL */}
     </View>
   );
 }

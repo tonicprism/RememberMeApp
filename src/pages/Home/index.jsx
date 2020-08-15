@@ -1,8 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import useSWR from 'swr';
 import { View, Text, Alert, TouchableOpacity, ScrollView } from 'react-native';
 
-import { Header, Item, Button, Modal, Input } from '../../components/index';
+import {
+  Header,
+  Item,
+  Button,
+  Modal,
+  Input,
+  ItemModal,
+  FastRefreshModal,
+} from '../../components/index';
+
 import ItemServices from '../../service/itemServices';
 
 import styles from './styles';
@@ -20,7 +28,7 @@ export default function Home() {
 
   /* INPUTS STATES */
   const [id, setId] = useState(1);
-  const [itemRemoved, setItemRemoved] = useState('');
+  const [findedItem, setfindedItem] = useState({});
   const [timeToRemember, setTimeToRemember] = useState('');
   const [titleOfMemory, setTitleOfMemory] = useState('');
   const [contentOfMemory, setContentOfMemory] = useState('');
@@ -32,7 +40,7 @@ export default function Home() {
     } else {
       handlerCreateMemoryModal();
       setId(id + 1);
-      console.log(id);
+      //console.log(id);
       setItems([
         ...items,
         {
@@ -60,8 +68,15 @@ export default function Home() {
     let newItems = items;
     let findingOneItemInTheNewItemsArray = newItems.find((item) => item.id == index);
     let indexOfItemGonnaBeRemover = newItems.indexOf(findingOneItemInTheNewItemsArray);
+    //alert('Item removed');
     newItems.splice(indexOfItemGonnaBeRemover, 1);
     setItems(newItems);
+  }
+
+  function getOneItem(index) {
+    let newItems = items;
+    let findingOneItemInTheNewItemsArray = newItems.find((item) => item.id == index);
+    setfindedItem(findingOneItemInTheNewItemsArray);
   }
 
   function alertTest1() {
@@ -90,10 +105,12 @@ export default function Home() {
     <View style={styles.wrapped}>
       <Header />
       <ScrollView>
-        {console.log(`Inspencionando o estado Id => ${id}`)}
+        {/**
+         * {console.log(`Inspencionando o estado Id => ${id}`)}
         {items.map((item) => console.log(item))}
+         */}
         <View style={styles.container}>
-          {items.length < 1 ? (
+          {indexItems().length < 1 ? (
             <View
               style={{
                 marginVertical: '50%',
@@ -105,10 +122,11 @@ export default function Home() {
               <Text style={{ color: '#195C92', fontSize: 20 }}>No have memories at here...</Text>
             </View>
           ) : (
-            items.map((item, index) => (
+            indexItems().map((item, index) => (
               <>
+                {/**console.log(`Esse é o id do item: ${item.id}`)*/}
                 <Item
-                  key={index}
+                  key={item.id}
                   itemId={item.id}
                   timeToRemember={Math.round(item.timeToRemember / 60)}
                   titleOfMemory={item.titleOfMemory}
@@ -120,12 +138,23 @@ export default function Home() {
                     removeOneItem(item.id);
                     setVisibleNullModalMemoryDeletedItem(!visibleNullModalMemoryDeletedItem);
                   }}
-                  handlerModal={handlerOpenItemModal}
+                  handlerModal={() => {
+                    getOneItem(item.id);
+                    handlerOpenItemModal();
+                  }}
                   visibleModal={visibleItemModal}
                 />
-                <Modal key={item.id} isVisible={handlerFastRefresh()} style={{ opacity: 0 }}>
-                  <Text>Item criado ou deletado com sucesso!</Text>
-                </Modal>
+                <ItemModal
+                  visibleItemModal={visibleItemModal}
+                  handlerOpenItemModal={handlerOpenItemModal}
+                  id={findedItem.id}
+                  titleOfMemory={findedItem.titleOfMemory}
+                  createdAtHours={findedItem.createdAtHours}
+                  createdAtDate={findedItem.createdAtDate}
+                  contentOfMemory={findedItem.contentOfMemory}
+                  setContentOfMemory={setContentOfMemory}
+                  setTitleOfMemory={setTitleOfMemory}
+                />
               </>
             ))
           )}
