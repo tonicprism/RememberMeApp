@@ -4,7 +4,6 @@ import { View, Text, Alert, TouchableOpacity, ScrollView } from 'react-native';
 
 import { Header, Item, Button, Modal, Input } from '../../components/index';
 import ItemServices from '../../service/itemServices';
-import Data from '../../service/DATA';
 
 import styles from './styles';
 
@@ -14,14 +13,13 @@ export default function Home() {
   const [visibleCreateModal, setVisibleCreateModal] = useState(false);
   const [visibleItemModal, setVisibleItemModal] = useState(false);
   const [visibleNoItemsModal, setVisibleNoItemsModal] = useState(false);
-
+  const [visibleNullModalMemoryDeletedItem, setVisibleNullModalMemoryDeletedItem] = useState(false);
   /* ITEMS STATES */
   const [items, setItems] = useState([]);
   const itemServices = new ItemServices(items);
 
   /* INPUTS STATES */
-  const [id, setId] = useState('');
-  const [itemId, setItemId] = useState(1);
+  const [id, setId] = useState(1);
   const [itemRemoved, setItemRemoved] = useState('');
   const [timeToRemember, setTimeToRemember] = useState('');
   const [titleOfMemory, setTitleOfMemory] = useState('');
@@ -34,6 +32,7 @@ export default function Home() {
     } else {
       handlerCreateMemoryModal();
       setId(id + 1);
+      console.log(id);
       setItems([
         ...items,
         {
@@ -57,12 +56,26 @@ export default function Home() {
     setItems([]);
   }
 
+  function removeOneItem(index) {
+    let newItems = items;
+    let findingOneItemInTheNewItemsArray = newItems.find((item) => item.id == index);
+    let indexOfItemGonnaBeRemover = newItems.indexOf(findingOneItemInTheNewItemsArray);
+    newItems.splice(indexOfItemGonnaBeRemover, 1);
+    setItems(newItems);
+  }
+
   function alertTest1() {
     Alert.alert('Alerta de teste 1', 'teste');
   }
 
   function alertTest2() {
     Alert.alert('Alerta de teste 2', 'teste');
+  }
+
+  function handlerFastRefresh() {
+    return !visibleNullModalMemoryDeletedItem
+      ? visibleNullModalMemoryDeletedItem
+      : !visibleNullModalMemoryDeletedItem;
   }
 
   function handlerOpenItemModal() {
@@ -73,21 +86,13 @@ export default function Home() {
     setVisibleCreateModal(!visibleCreateModal);
   }
 
-  /**const ItemsUpdate = () => {
-    const { data: items } = useSWR(indexItems, {
-      revalidateOnMount: true,
-      refreshInterval: 3000,
-      loadingTimeout: 4000,
-      errorRetryInterval: 5000,
-    });
-  };*/
-
   return (
     <View style={styles.wrapped}>
       <Header />
       <ScrollView>
+        {console.log(`Inspencionando o estado Id => ${id}`)}
+        {items.map((item) => console.log(item))}
         <View style={styles.container}>
-          {console.log(items)}
           {items.length < 1 ? (
             <View
               style={{
@@ -100,20 +105,28 @@ export default function Home() {
               <Text style={{ color: '#195C92', fontSize: 20 }}>No have memories at here...</Text>
             </View>
           ) : (
-            items.map((item) => (
-              <Item
-                key={item.id}
-                itemId={itemId}
-                timeToRemember={Math.round(item.timeToRemember / 60)}
-                titleOfMemory={item.titleOfMemory}
-                contentOfMemory={item.contentOfMemory}
-                createdAtDate={item.createdAtDate}
-                createdAtHours={item.createdAtHours}
-                confirmButton={alertTest1}
-                deleteButton={removeAllItem}
-                handlerModal={handlerOpenItemModal}
-                visibleModal={visibleItemModal}
-              />
+            items.map((item, index) => (
+              <>
+                <Item
+                  key={index}
+                  itemId={item.id}
+                  timeToRemember={Math.round(item.timeToRemember / 60)}
+                  titleOfMemory={item.titleOfMemory}
+                  contentOfMemory={item.contentOfMemory}
+                  createdAtDate={item.createdAtDate}
+                  createdAtHours={item.createdAtHours}
+                  confirmButton={alertTest1}
+                  deleteButton={() => {
+                    removeOneItem(item.id);
+                    setVisibleNullModalMemoryDeletedItem(!visibleNullModalMemoryDeletedItem);
+                  }}
+                  handlerModal={handlerOpenItemModal}
+                  visibleModal={visibleItemModal}
+                />
+                <Modal key={item.id} isVisible={handlerFastRefresh()} style={{ opacity: 0 }}>
+                  <Text>Item criado ou deletado com sucesso!</Text>
+                </Modal>
+              </>
             ))
           )}
         </View>
