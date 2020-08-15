@@ -102,6 +102,7 @@ export default function Item({
         <ItemHeader title="Em 10 minutos" iconName="md-time" color="#fff" fontSize={25} />
         {/* BEGIN ITEM BODY */}
         <ItemBody style={{ flexDirection: 'column' }}>
+          <Text>{itemId}</Text>
           <View style={styles.itemTextTitleContainer}>
             <Button
               iconFamily="MaterialCommunityIcons"
