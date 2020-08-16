@@ -33,14 +33,18 @@ export default function Home() {
   const [titleOfMemory, setTitleOfMemory] = useState('');
   const [contentOfMemory, setContentOfMemory] = useState('');
 
+  // Method responsable for store Items in the items state
   function storeItem() {
+    // The field timeToRemember is obliged
     if (timeToRemember === '') {
       alert('Miss some field, please try again...');
       setVisibleCreateModal(!visibleCreateModal);
     } else {
       handlerCreateMemoryModal();
       setId(id + 1);
-      //console.log(id);
+
+      /* Setting the Items with the new Item
+      and getting the which were already there */
       setItems([
         ...items,
         {
@@ -68,7 +72,6 @@ export default function Home() {
     let newItems = items;
     let findingOneItemInTheNewItemsArray = newItems.find((item) => item.id == index);
     let indexOfItemGonnaBeRemover = newItems.indexOf(findingOneItemInTheNewItemsArray);
-    //alert('Item removed');
     newItems.splice(indexOfItemGonnaBeRemover, 1);
     setItems(newItems);
   }
@@ -109,7 +112,9 @@ export default function Home() {
          * {console.log(`Inspencionando o estado Id => ${id}`)}
         {items.map((item) => console.log(item))}
          */}
+        {/*Container de items */}
         <View style={styles.container}>
+          {/* Checking if the items list is empty with ternay operator */}
           {indexItems().length < 1 ? (
             <View
               style={{
@@ -119,16 +124,17 @@ export default function Home() {
                 justifyContent: 'center',
               }}
             >
+              {/* Message in case which the list is empty */}
               <Text style={{ color: '#195C92', fontSize: 20 }}>No have memories at here...</Text>
             </View>
           ) : (
+            // Rendering the Items and travelling the list
             indexItems().map((item, index) => (
               <>
-                {/**console.log(`Esse é o id do item: ${item.id}`)*/}
                 <Item
-                  key={item.id}
+                  key={item.id} // Unique key obligated by React
                   itemId={item.id}
-                  timeToRemember={Math.round(item.timeToRemember / 60)}
+                  timeToRemember={Math.round(item.timeToRemember / 60)} // O timeToRemember is caught in seconds and converted to minutes
                   titleOfMemory={item.titleOfMemory}
                   contentOfMemory={item.contentOfMemory}
                   createdAtDate={item.createdAtDate}
@@ -144,6 +150,7 @@ export default function Home() {
                   }}
                   visibleModal={visibleItemModal}
                 />
+                {/* Item Modal which enable the view of the contentOfMemory */}
                 <ItemModal
                   visibleItemModal={visibleItemModal}
                   handlerOpenItemModal={handlerOpenItemModal}
@@ -161,11 +168,13 @@ export default function Home() {
         </View>
       </ScrollView>
 
+      {/* Creation of item modal */}
       <Modal
         isVisible={visibleCreateModal}
         style={styles.modalContainer}
         onPress={handlerCreateMemoryModal}
       >
+        {/* Modal title */}
         <View style={styles.modalHeader}>
           <Button
             iconFamily="MaterialCommunityIcons"
@@ -177,7 +186,10 @@ export default function Home() {
           <Text style={styles.modalHeaderTitle}>Criar Memória</Text>
         </View>
 
+        {/* Modal content/where stay the inputs
+         and the button which confirm the creation of the Item */}
         <View style={styles.modalContent}>
+          {/* Inputs which set the value of timeToRemember */}
           <Input
             onChangeText={(value) => setTimeToRemember(value)}
             defaultValue={timeToRemember}
@@ -186,7 +198,7 @@ export default function Home() {
             clearTextOnFocus={true}
             style={{ minWidth: 300 }}
           />
-
+          {/* Inputs which set the value of titleMemory */}
           <Input
             onChangeText={(text) => setTitleOfMemory(text)}
             keyboardType="default"
@@ -196,6 +208,8 @@ export default function Home() {
             clearTextOnFocus={true}
             style={{ minWidth: 300 }}
           />
+
+          {/* Inputs which set the value of contentOfMemory */}
           <Input
             onChangeText={(text) => setContentOfMemory(text)}
             keyboardType="default"
@@ -206,11 +220,13 @@ export default function Home() {
             style={{ minWidth: 300 }}
           />
         </View>
+        {/* Submit Button who calls the function
+         to storage the inputs texts in Item */}
         <Button onPress={storeItem}>
           <Text>Create Item</Text>
         </Button>
       </Modal>
-
+      {/* FloatButton */}
       <Button
         style={styles.floatButton}
         iconColor="#ffffff"
