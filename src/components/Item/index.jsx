@@ -59,7 +59,7 @@ export default function Item({
               style={{ marginLeft: 5 }}
             />
             {/* [] O QUE FAZER --> Criado em {date(dd/mm/aa)} às {time(hh/mm)} */}
-            <Text style={styles.dateText}>{`Criado em ${createdAtDate} às ${createdAtHours}`}</Text>
+            <Text style={styles.dateText}>{`${createdAtDate} ${createdAtHours}`}</Text>
           </View>
         </ItemBody>
         {/* END ITEM BODY */}
