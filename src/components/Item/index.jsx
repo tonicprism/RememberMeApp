@@ -40,7 +40,7 @@ export default function Item({
 
         {/* BEGIN ITEM BODY */}
         <ItemBody style={styles.itemBodyContainer}>
-          <Text>{itemId}</Text>
+          {/*<Text>{itemId}</Text>*/}
           <View style={styles.titleTextContainer}>
             <Button
               iconFamily="MaterialCommunityIcons"
@@ -62,10 +62,9 @@ export default function Item({
             <Text style={styles.dateText}>{`${createdAtDate} ${createdAtHours}`}</Text>
           </View>
         </ItemBody>
+
         {/* END ITEM BODY */}
       </TouchableOpacity>
-      {/* END ITEM CONTENT */}
-
       {/* BEGIN BUTTONS CONTAINER */}
       <View style={[styles.buttonsContainerItem]}>
         <Button
@@ -86,6 +85,7 @@ export default function Item({
         />
       </View>
       {/* END BUTTONS CONTAINER */}
+      {/* END ITEM CONTENT */}
     </View>
   );
 }
