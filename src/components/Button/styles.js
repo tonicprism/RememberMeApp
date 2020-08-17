@@ -21,10 +21,8 @@ const styles = StyleSheet.create({
 
   text: {
     color: '#fff',
-    margin: '2%',
     borderWidth: 2,
     borderColor: '#fff',
-    padding: '5%',
     paddingHorizontal: '30%',
     borderRadius: 20,
     alignSelf: 'center',
