@@ -43,10 +43,32 @@ const styles = StyleSheet.create({
     fontSize: 25,
   },
 
+  modalCaptions: {
+    color: '#ffffff',
+  },
+
+  inputGroup: {
+    justifyContent: 'flex-start',
+    paddingBottom: '2%',
+  },
+
   modalContent: {
     flexDirection: 'column',
     alignItems: 'center',
     marginTop: 20,
+  },
+
+  createItemButton: {
+    padding: '3%',
+    color: '#54f745',
+    borderColor: '#54f745',
+  },
+
+  emptyMemoriesList: {
+    marginVertical: '50%',
+    minHeight: '20%',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
 

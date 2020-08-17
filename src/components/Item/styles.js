@@ -24,9 +24,12 @@ const styles = StyleSheet.create({
 
   itemBodyContainer: {
     flexDirection: 'column',
+    justifyContent: 'center',
+    marginTop: '2%',
     borderColor: '#195C92',
     paddingRight: 5,
-    borderRightWidth: 2,
+    //backgroundColor: 'yellow',
+    //borderRightWidth: 2,
   },
 
   titleTextContainer: {
@@ -58,7 +61,9 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'flex-end',
-    padding: 2,
+    paddingHorizontal: '2%',
+    flex: 1,
+    //backgroundColor: 'red',
   },
 
   buttonsContainerModal: {

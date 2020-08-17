@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
     lineHeight: 30,
     minWidth: 250,
     marginBottom: 10,
-    padding: 10,
+    paddingHorizontal: '2%',
     borderRadius: 15,
     color: '#fff',
     // Adding shadow
