@@ -1,15 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, Alert, TouchableOpacity, ScrollView } from 'react-native';
 
-import {
-  Header,
-  Item,
-  Button,
-  Modal,
-  Input,
-  ItemModal,
-  FastRefreshModal,
-} from '../../components/index';
+import { Header, Item, Button, Modal, Input, ItemModal } from '../../components/index';
 
 import ItemServices from '../../service/itemServices';
 
@@ -90,12 +82,6 @@ export default function Home() {
     Alert.alert('Alerta de teste 2', 'teste');
   }
 
-  function handlerFastRefresh() {
-    return !visibleNullModalMemoryDeletedItem
-      ? visibleNullModalMemoryDeletedItem
-      : !visibleNullModalMemoryDeletedItem;
-  }
-
   function handlerOpenItemModal() {
     setVisibleItemModal(!visibleItemModal);
   }
@@ -155,6 +141,7 @@ export default function Home() {
                   visibleItemModal={visibleItemModal}
                   handlerOpenItemModal={handlerOpenItemModal}
                   id={findedItem.id}
+                  key={id}
                   titleOfMemory={findedItem.titleOfMemory}
                   createdAtHours={findedItem.createdAtHours}
                   createdAtDate={findedItem.createdAtDate}
