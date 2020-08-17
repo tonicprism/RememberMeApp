@@ -3,6 +3,7 @@ import { Text } from 'react-native';
 
 import Modal from '../Modal';
 import Input from '../Input';
+import Button from '../Button';
 
 export default function ItemModal({
   visibleItemModal,
@@ -14,6 +15,8 @@ export default function ItemModal({
   contentOfMemory,
   setTitleOfMemory,
   setContentOfMemory,
+  confirmChangesButton,
+  deleteButton,
 }) {
   return (
     <Modal
@@ -29,20 +32,24 @@ export default function ItemModal({
       }}
     >
       {/*console.log(`Item encontrado: ${JSON.stringify(findedItem)}`)*/}
-      <Text>{id}</Text>
-      <Text>Titulo da memoria</Text>
+      <Text style={{ color: '#fff' }}>
+        {' '}
+        Id do item da modal: <Text style={{ color: '#000' }}>{id}</Text>
+      </Text>
+      <Text style={{ color: '#FFF' }}>Titulo da memoria</Text>
       <Input
         onChangeText={(text) => setTitleOfMemory(text)}
         keyboardType="default"
         defaultValue={titleOfMemory}
         maxLength={100}
-        placeholder="Conteúdo da lembrança?"
+        placeholder="Titulo da lembrança"
         clearTextOnFocus={true}
       />
-      <Text>Data de criação</Text>
+      <Text style={{ color: '#fff' }}>Data de criação</Text>
       <Text>{createdAtDate}</Text>
+      <Text style={{ color: '#fff' }}>Hora de criação</Text>
       <Text>{createdAtHours}</Text>
-      <Text>Conteúdo da memoria</Text>
+      <Text style={{ color: '#fff' }}>Conteúdo da memoria</Text>
       <Input
         onChangeText={(text) => setContentOfMemory(text)}
         keyboardType="default"
@@ -51,6 +58,12 @@ export default function ItemModal({
         placeholder="Conteúdo da lembrança?"
         clearTextOnFocus={true}
       />
+      <Button style={{ padding: '3%' }} onPress={confirmChangesButton}>
+        Editar Memória
+      </Button>
+      <Button style={{ padding: '3%', borderColor: 'red' }} onPress={deleteButton}>
+        Delete essa memoria
+      </Button>
     </Modal>
   );
 }
