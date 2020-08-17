@@ -1,9 +1,11 @@
 import React from 'react';
-import { Text } from 'react-native';
+import { Text, View } from 'react-native';
 
 import Modal from '../Modal';
 import Input from '../Input';
 import Button from '../Button';
+
+import styles from '../../pages/Home/styles';
 
 export default function ItemModal({
   visibleItemModal,
@@ -17,25 +19,21 @@ export default function ItemModal({
   setContentOfMemory,
   confirmChangesButton,
   deleteButton,
+  style,
 }) {
   return (
-    <Modal
-      isVisible={visibleItemModal}
-      onPress={handlerOpenItemModal}
-      style={{
-        justifyContent: 'center',
-        alignItems: 'center',
-        margin: 10,
-        padding: 20,
-        paddingLeft: 10,
-        marginTop: 2,
-      }}
-    >
+    <Modal isVisible={visibleItemModal} onPress={handlerOpenItemModal} style={style}>
       {/*console.log(`Item encontrado: ${JSON.stringify(findedItem)}`)*/}
-      <Text style={{ color: '#fff' }}>
-        {' '}
-        Id do item da modal: <Text style={{ color: '#000' }}>{id}</Text>
-      </Text>
+      <View style={styles.modalHeader}>
+        <Button
+          iconFamily="MaterialCommunityIcons"
+          iconColor="#ffffff"
+          iconSize={30}
+          iconName="pencil"
+        />
+        <Text style={styles.modalHeaderTitle}>Editar Memória</Text>
+      </View>
+
       <Text style={{ color: '#FFF' }}>Titulo da memoria</Text>
       <Input
         onChangeText={(text) => setTitleOfMemory(text)}
@@ -46,9 +44,21 @@ export default function ItemModal({
         clearTextOnFocus={true}
       />
       <Text style={{ color: '#fff' }}>Data de criação</Text>
-      <Text>{createdAtDate}</Text>
+      <Input
+        onChangeText={(text) => setContentOfMemory(text)}
+        keyboardType="default"
+        defaultValue={createdAtDate}
+        maxLength={100}
+        clearTextOnFocus={true}
+      />
       <Text style={{ color: '#fff' }}>Hora de criação</Text>
-      <Text>{createdAtHours}</Text>
+      <Input
+        onChangeText={(text) => setContentOfMemory(text)}
+        keyboardType="default"
+        defaultValue={createdAtHours}
+        maxLength={100}
+        clearTextOnFocus={true}
+      />
       <Text style={{ color: '#fff' }}>Conteúdo da memoria</Text>
       <Input
         onChangeText={(text) => setContentOfMemory(text)}
@@ -58,10 +68,13 @@ export default function ItemModal({
         placeholder="Conteúdo da lembrança?"
         clearTextOnFocus={true}
       />
-      <Button style={{ padding: '3%' }} onPress={confirmChangesButton}>
+      <Button
+        style={{ padding: '3%', borderColor: 'yellow', color: 'yellow' }}
+        onPress={confirmChangesButton}
+      >
         Editar Memória
       </Button>
-      <Button style={{ padding: '3%', borderColor: 'red' }} onPress={deleteButton}>
+      <Button style={{ padding: '3%', borderColor: 'red', color: 'red' }} onPress={deleteButton}>
         Delete essa memoria
       </Button>
     </Modal>

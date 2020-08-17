@@ -110,22 +110,11 @@ export default function Home() {
     <View style={styles.wrapped}>
       <Header />
       <ScrollView>
-        {/**
-         * {console.log(`Inspencionando o estado Id => ${id}`)}
-        {items.map((item) => console.log(item))}
-         */}
-        {/*Container de items */}
+        {/*Container of items */}
         <View style={styles.container}>
-          {/* Checking if the items list is empty with ternay operator */}
+          {/* Checking if the items list is empty with ternary operator */}
           {indexItems().length < 1 ? (
-            <View
-              style={{
-                marginVertical: '50%',
-                minHeight: '20%',
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}
-            >
+            <View style={styles.emptyMemoriesList}>
               {/* Message in case which the list is empty */}
               <Text style={{ color: '#195C92', fontSize: 20 }}>No have memories at here...</Text>
             </View>
@@ -148,13 +137,13 @@ export default function Home() {
                   }}
                   handlerModal={() => {
                     getOneItem(item.id);
-                    //console.log(findedItem);
                     handlerOpenItemModal();
                   }}
                   visibleModal={visibleItemModal}
                 />
                 {/* Item Modal which enable the view of the contentOfMemory */}
                 <ItemModal
+                  style={styles.modalContainer}
                   visibleItemModal={visibleItemModal}
                   handlerOpenItemModal={handlerOpenItemModal}
                   id={findedItem.id}
@@ -172,14 +161,16 @@ export default function Home() {
                     });
                     handlerOpenItemModal();
                   }}
+                  deleteButton={() => {
+                    removeOneItem(findedItem.id);
+                    handlerOpenItemModal();
+                    setVisibleNullModalMemoryDeletedItem(!visibleNullModalMemoryDeletedItem);
+                  }}
                 />
               </>
             ))
           )}
         </View>
-        <Swipeable>
-          <Text>Testando</Text>
-        </Swipeable>
       </ScrollView>
 
       {/* Creation of item modal */}
@@ -204,39 +195,50 @@ export default function Home() {
          and the button which confirm the creation of the Item */}
         <View style={styles.modalContent}>
           {/* Inputs which set the value of timeToRemember */}
-          <Input
-            onChangeText={(value) => setTimeToRemember(value)}
-            defaultValue={timeToRemember}
-            keyboardType="numeric"
-            placeholder="Em quantos minutos você deve ser lembrado? (Em minutos)"
-            clearTextOnFocus={true}
-            style={{ minWidth: 300 }}
-          />
+          <View style={styles.inputGroup}>
+            <Text style={styles.modalCaptions}>
+              Em quantos minutos você deve ser lembrado? (Em minutos)?
+            </Text>
+            <Input
+              onChangeText={(value) => setTimeToRemember(value)}
+              defaultValue={timeToRemember}
+              keyboardType="numeric"
+              placeholder="Em quantos minutos você deve ser lembrado? (Em minutos)"
+              clearTextOnFocus={true}
+              style={{ minWidth: 300 }}
+            />
+          </View>
           {/* Inputs which set the value of titleMemory */}
-          <Input
-            onChangeText={(text) => setTitleOfMemory(text)}
-            keyboardType="default"
-            defaultValue={titleOfMemory}
-            maxLength={50}
-            placeholder="Título do que você deve ser lembrado?"
-            clearTextOnFocus={true}
-            style={{ minWidth: 300 }}
-          />
+          <View style={styles.inputGroup}>
+            <Text style={styles.modalCaptions}>Título do que você deve ser lembrado?</Text>
+            <Input
+              onChangeText={(text) => setTitleOfMemory(text)}
+              keyboardType="default"
+              defaultValue={titleOfMemory}
+              maxLength={50}
+              placeholder="Título do que você deve ser lembrado?"
+              clearTextOnFocus={true}
+              style={{ minWidth: 300 }}
+            />
+          </View>
 
           {/* Inputs which set the value of contentOfMemory */}
-          <Input
-            onChangeText={(text) => setContentOfMemory(text)}
-            keyboardType="default"
-            defaultValue={contentOfMemory}
-            maxLength={100}
-            placeholder="Conteúdo da lembrança?"
-            clearTextOnFocus={true}
-            style={{ minWidth: 300 }}
-          />
+          <View style={styles.inputGroup}>
+            <Text style={styles.modalCaptions}>Conteúdo da lembrança?</Text>
+            <Input
+              onChangeText={(text) => setContentOfMemory(text)}
+              keyboardType="default"
+              defaultValue={contentOfMemory}
+              maxLength={100}
+              placeholder="Conteúdo da lembrança?"
+              clearTextOnFocus={true}
+              style={{ minWidth: 300 }}
+            />
+          </View>
         </View>
         {/* Submit Button who calls the function
          to storage the inputs texts in Item */}
-        <Button onPress={storeItem} style={{ padding: '3%' }}>
+        <Button onPress={storeItem} style={styles.createItemButton}>
           <Text>Create Item</Text>
         </Button>
       </Modal>
