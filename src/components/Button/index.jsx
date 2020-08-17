@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
+import { BorderlessButton } from 'react-native-gesture-handler';
 
 import chooseIconFamily from '../../service/chooseIconFamily';
 
@@ -10,7 +11,7 @@ function Button({ iconFamily, iconName, iconSize, iconColor, children, style, on
     <>
       <TouchableOpacity style={[styles.button, style]} onPress={onPress}>
         {chooseIconFamily(iconFamily, iconName, iconSize, iconColor)}
-        {children && <Text style={styles.text}>{children}</Text>}
+        {children && <Text style={[styles.text, style]}>{children}</Text>}
       </TouchableOpacity>
     </>
   );
