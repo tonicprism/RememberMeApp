@@ -1,5 +1,14 @@
+/*
+  [] Implementar notificação;
+    [] ;
+  [] Implementar o armazenamento assíncrono; 
+    [] ;
+
+*/
+
 import React, { useState, useEffect } from 'react';
 import { View, Text, Alert, TouchableOpacity, ScrollView } from 'react-native';
+import Swipeable from 'react-native-gesture-handler/Swipeable';
 
 import { Header, Item, Button, Modal, Input, ItemModal } from '../../components/index';
 
@@ -44,8 +53,8 @@ export default function Home() {
           timeToRemember: Math.round(timeToRemember * 60),
           titleOfMemory: titleOfMemory,
           contentOfMemory: contentOfMemory,
-          createdAtDate: moment().format('L'),
-          createdAtHours: moment().format('LT'),
+          createdAtDate: `Criado em ${moment().format('L')}`,
+          createdAtHours: `às ${moment().format('LT')}`,
           timeStamp: moment().format(),
         },
       ]);
@@ -74,6 +83,13 @@ export default function Home() {
     setfindedItem(findingOneItemInTheNewItemsArray);
   }
 
+  function editOneItem(itemId, { newContentOfMemory, newTitleOfMemory }) {
+    getOneItem(itemId);
+    findedItem.contentOfMemory = newContentOfMemory;
+    findedItem.titleOfMemory = newTitleOfMemory;
+    findedItem.createdAtDate = `Editado em ${moment().format('L')}`;
+    findedItem.createdAtHours = `às ${moment().format('LT')}`;
+  }
   function alertTest1() {
     Alert.alert('Alerta de teste 1', 'teste');
   }
@@ -123,8 +139,8 @@ export default function Home() {
                   timeToRemember={Math.round(item.timeToRemember / 60)} // O timeToRemember is caught in seconds and converted to minutes
                   titleOfMemory={item.titleOfMemory}
                   contentOfMemory={item.contentOfMemory}
-                  createdAtDate={item.createdAtDate}
-                  createdAtHours={item.createdAtHours}
+                  createdAtDate={`${item.createdAtDate}`}
+                  createdAtHours={`${item.createdAtHours}`}
                   confirmButton={alertTest1}
                   deleteButton={() => {
                     removeOneItem(item.id);
@@ -132,6 +148,7 @@ export default function Home() {
                   }}
                   handlerModal={() => {
                     getOneItem(item.id);
+                    //console.log(findedItem);
                     handlerOpenItemModal();
                   }}
                   visibleModal={visibleItemModal}
@@ -148,11 +165,21 @@ export default function Home() {
                   contentOfMemory={findedItem.contentOfMemory}
                   setContentOfMemory={setContentOfMemory}
                   setTitleOfMemory={setTitleOfMemory}
+                  confirmChangesButton={() => {
+                    editOneItem(findedItem.id, {
+                      newContentOfMemory: contentOfMemory,
+                      newTitleOfMemory: titleOfMemory,
+                    });
+                    handlerOpenItemModal();
+                  }}
                 />
               </>
             ))
           )}
         </View>
+        <Swipeable>
+          <Text>Testando</Text>
+        </Swipeable>
       </ScrollView>
 
       {/* Creation of item modal */}
@@ -209,7 +236,7 @@ export default function Home() {
         </View>
         {/* Submit Button who calls the function
          to storage the inputs texts in Item */}
-        <Button onPress={storeItem}>
+        <Button onPress={storeItem} style={{ padding: '3%' }}>
           <Text>Create Item</Text>
         </Button>
       </Modal>
