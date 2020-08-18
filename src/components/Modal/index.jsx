@@ -10,7 +10,6 @@ function _Modal({ isVisible, children, onPress, style }) {
     <Modal
       isVisible={isVisible}
       onSwipeComplete={onPress}
-      swipeDirection="down"
       onBackdropPress={onPress}
       backdropColor="#000000"
       backdropOpacity={0.1}
