@@ -4,7 +4,6 @@ const styles = StyleSheet.create({
   wrapper: {
     backgroundColor: '#AAEAFB',
     flexDirection: 'row',
-    minHeight: 177,
     marginBottom: 20,
     borderRadius: 30,
     paddingHorizontal: 10,
@@ -61,7 +60,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'flex-end',
-    paddingHorizontal: '2%',
+
     flex: 1,
     //backgroundColor: 'red',
   },
