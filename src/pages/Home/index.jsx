@@ -8,11 +8,8 @@
 
 import React, { useState, useEffect } from 'react';
 import { View, Text, Alert, TouchableOpacity, ScrollView } from 'react-native';
-import Swipeable from 'react-native-gesture-handler/Swipeable';
 
 import { Header, Item, Button, Modal, Input, ItemModal } from '../../components/index';
-
-import ItemServices from '../../service/itemServices';
 
 import styles from './styles';
 
@@ -25,7 +22,6 @@ export default function Home() {
   const [visibleNullModalMemoryDeletedItem, setVisibleNullModalMemoryDeletedItem] = useState(false);
   /* ITEMS STATES */
   const [items, setItems] = useState([]);
-  const itemServices = new ItemServices(items);
 
   /* INPUTS STATES */
   const [id, setId] = useState(1);
@@ -196,9 +192,6 @@ export default function Home() {
         <View style={styles.modalContent}>
           {/* Inputs which set the value of timeToRemember */}
           <View style={styles.inputGroup}>
-            <Text style={styles.modalCaptions}>
-              Em quantos minutos você deve ser lembrado? (Em minutos)?
-            </Text>
             <Input
               onChangeText={(value) => setTimeToRemember(value)}
               defaultValue={timeToRemember}
@@ -210,7 +203,6 @@ export default function Home() {
           </View>
           {/* Inputs which set the value of titleMemory */}
           <View style={styles.inputGroup}>
-            <Text style={styles.modalCaptions}>Título do que você deve ser lembrado?</Text>
             <Input
               onChangeText={(text) => setTitleOfMemory(text)}
               keyboardType="default"
@@ -224,7 +216,6 @@ export default function Home() {
 
           {/* Inputs which set the value of contentOfMemory */}
           <View style={styles.inputGroup}>
-            <Text style={styles.modalCaptions}>Conteúdo da lembrança?</Text>
             <Input
               onChangeText={(text) => setContentOfMemory(text)}
               keyboardType="default"
