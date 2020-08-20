@@ -10,7 +10,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, Alert, TouchableOpacity, ScrollView, Platform } from 'react-native';
 import * as Notifications from 'expo-notifications';
 
-import { Header, Item, Button, Modal, Input, ItemModal } from '../../components/index';
+import { Header, Item, Button, Modal, Input, ItemModal, ItemHeader } from '../../components/index';
 
 import styles from './styles';
 
@@ -36,6 +36,7 @@ export default function Home() {
 
   /* ITEMS STATES */
   const [items, setItems] = useState([]);
+  const [removedItems, setRemovedItems] = useState([]);
   const [notification, setNotification] = useState([]);
 
   /* INPUTS STATES */
@@ -47,7 +48,26 @@ export default function Home() {
 
   /* ITEM METHODS */
 
-  // Method responsable for store Items in the items state
+  /* METHODS TO THE REMOVEDITEMS */
+
+  function indexRemovedItems() {
+    return removedItems;
+  }
+
+  function removeOneRemovedItem(index) {
+    let newItems = removedItems;
+    let findingOneItemInTheNewItemsArray = newItems.find((item) => item.id == index);
+    let indexOfItemGonnaBeRemover = newItems.indexOf(findingOneItemInTheNewItemsArray);
+    newItems.splice(indexOfItemGonnaBeRemover, 1);
+    setRemovedItems(newItems);
+  }
+
+  function removeAllRemovedItems() {
+    setRemovedItems([]);
+  }
+
+  /* METHODS TO THE ITEMS */
+
   function storeItem() {
     // The field timeToRemember is obliged
     if (timeToRemember === '') {
@@ -86,15 +106,12 @@ export default function Home() {
     return items;
   }
 
-  function removeAllItem() {
-    setItems([]);
-  }
-
-  async function removeOneItem(index) {
+  function removeOneItem(index) {
     let newItems = items;
     let findingOneItemInTheNewItemsArray = newItems.find((item) => item.id == index);
     let indexOfItemGonnaBeRemover = newItems.indexOf(findingOneItemInTheNewItemsArray);
     newItems.splice(indexOfItemGonnaBeRemover, 1);
+    setRemovedItems([...removedItems, findingOneItemInTheNewItemsArray]);
     setItems(newItems);
   }
 
@@ -141,12 +158,6 @@ export default function Home() {
 
   /* NOTIFICATIONS METHODS */
 
-  function showAllNotifications() {
-    return Notifications.getAllScheduledNotificationsAsync()
-      .then((res) => res)
-      .catch((err) => err);
-  }
-
   async function creatingNotification({
     titleOfNotification,
     bodyOfNotification,
@@ -179,9 +190,19 @@ export default function Home() {
     <View style={styles.wrapped}>
       <Header />
       <ScrollView>
-        {/*Container of items */}
+        {/*CONTAINER OF ITEMS YET NOT REMEMBERED*/}
         <View style={styles.container}>
           {/* Checking if the items list is empty with ternary operator */}
+          <ItemHeader
+            title="Remember Me..."
+            iconName={indexItems().length < 1 ? 'md-time' : 'md-trash'}
+            color="green"
+            fontSize={30}
+            onPress={async () => {
+              setItems([]);
+              await Notifications.cancelAllScheduledNotificationsAsync();
+            }}
+          />
           {indexItems().length < 1 ? (
             <View style={styles.emptyMemoriesList}>
               {/* Message in case which the list is empty */}
@@ -199,16 +220,17 @@ export default function Home() {
                   contentOfMemory={item.contentOfMemory}
                   createdAtDate={`${item.createdAtDate}`}
                   createdAtHours={`${item.createdAtHours}`}
-                  confirmButton={alertTest1}
-                  deleteButton={async () => {
+                  confirmButton={async () => {
                     removeOneItem(item.id);
                     setVisibleNullModalMemoryDeletedItem(!visibleNullModalMemoryDeletedItem);
                   }}
+                  deleteButton={alertTest1}
                   handlerModal={() => {
                     getOneItem(item.id);
                     handlerOpenItemModal();
                   }}
                   visibleModal={visibleItemModal}
+                  removed={false}
                 />
                 {/* Item Modal which enable the view of the contentOfMemory */}
                 <ItemModal
@@ -238,6 +260,72 @@ export default function Home() {
                 />
               </>
             ))
+          )}
+        </View>
+
+        {/* CONTAINER OF REMOVED ITEMS */}
+        <View style={styles.container}>
+          {indexRemovedItems().length < 1 ? (
+            <View></View>
+          ) : (
+            <View>
+              <ItemHeader
+                title="Not More!"
+                iconName={'md-trash'}
+                color="red"
+                fontSize={30}
+                onPress={removeAllRemovedItems}
+              />
+              {indexRemovedItems().map((item, index) => (
+                <>
+                  <Item
+                    key={item.id} // Unique key obligated by React
+                    itemId={item.id}
+                    timeToRemember={Math.round(item.timeToRemember / 60)} // O timeToRemember is caught in seconds and converted to minutes
+                    titleOfMemory={item.titleOfMemory}
+                    contentOfMemory={item.contentOfMemory}
+                    createdAtDate={`${item.createdAtDate}`}
+                    createdAtHours={`${item.createdAtHours}`}
+                    deleteButton={async () => {
+                      removeOneRemovedItem(item.id);
+                      setVisibleNullModalMemoryDeletedItem(!visibleNullModalMemoryDeletedItem);
+                    }}
+                    handlerModal={() => {
+                      getOneItem(item.id);
+                      handlerOpenItemModal();
+                    }}
+                    visibleModal={visibleItemModal}
+                    removed={true}
+                  />
+                  {/* Item Modal which enable the view of the contentOfMemory */}
+                  <ItemModal
+                    style={styles.modalContainer}
+                    visibleItemModal={visibleItemModal}
+                    handlerOpenItemModal={handlerOpenItemModal}
+                    id={item.id}
+                    key={index}
+                    titleOfMemory={item.titleOfMemory}
+                    createdAtHours={item.createdAtHours}
+                    createdAtDate={item.createdAtDate}
+                    contentOfMemory={item.contentOfMemory}
+                    setContentOfMemory={setContentOfMemory}
+                    setTitleOfMemory={setTitleOfMemory}
+                    confirmChangesButton={() => {
+                      editOneItem(item.id, {
+                        newContentOfMemory: contentOfMemory,
+                        newTitleOfMemory: titleOfMemory,
+                      });
+                      handlerOpenItemModal();
+                    }}
+                    deleteButton={() => {
+                      removeOneRemovedItem(item.id);
+                      handlerOpenItemModal();
+                      setVisibleNullModalMemoryDeletedItem(!visibleNullModalMemoryDeletedItem);
+                    }}
+                  />
+                </>
+              ))}
+            </View>
           )}
         </View>
       </ScrollView>
