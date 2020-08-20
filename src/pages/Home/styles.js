@@ -65,8 +65,8 @@ const styles = StyleSheet.create({
   },
 
   emptyMemoriesList: {
-    marginVertical: '50%',
-    minHeight: '20%',
+    marginVertical: '20%',
+    maxHeight: '20%',
     alignItems: 'center',
     justifyContent: 'center',
   },

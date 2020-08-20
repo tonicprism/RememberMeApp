@@ -5,7 +5,7 @@ import Button from '../../Button';
 
 import styles from './styles';
 
-export default function ItemHeader({ title, iconName, color, fontSize }) {
+export default function ItemHeader({ title, iconName, color, fontSize, onPress }) {
   return (
     <View style={styles.container}>
       <Button
@@ -14,6 +14,7 @@ export default function ItemHeader({ title, iconName, color, fontSize }) {
         iconName={iconName}
         iconSize={fontSize}
         iconColor={color}
+        onPress={onPress}
       />
       <Text style={[styles.titleText, { color: color, fontSize: fontSize }]}>{title}</Text>
     </View>
