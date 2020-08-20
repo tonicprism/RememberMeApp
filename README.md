@@ -46,15 +46,15 @@
 ### Screenshots
 
 <div float="left">
-  <img src="./.github/screenshots-release-200820/0.jpeg" width="300">
-  <img src="./.github/screenshots-release-200820/1.jpeg" width="300">
-  <img src="./.github/screenshots-release-200820/2.jpeg" width="300">
+  <img src="./.github/screenshots-release-200820/0.jpeg" width="200">
+  <img src="./.github/screenshots-release-200820/1.jpeg" width="200">
+  <img src="./.github/screenshots-release-200820/2.jpeg" width="200">
 </div>
 
 <div float="left">
-  <img src="./.github/screenshots-release-200820/3.jpeg" width="300">
-  <img src="./.github/screenshots-release-200820/4.jpeg" width="300">
-  <img src="./.github/screenshots-release-200820/5.jpeg" width="300">
+  <img src="./.github/screenshots-release-200820/4.jpeg" width="200">
+  <img src="./.github/screenshots-release-200820/5.jpeg" width="200">
+  <img src="./.github/screenshots-release-200820/3.jpeg" width="200">
 </div>
 
 # :computer: Technologies
