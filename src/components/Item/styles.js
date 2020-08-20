@@ -39,6 +39,13 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
+
+  modalContainer: {
+    flexDirection: 'column',
+    padding: 30,
+    minHeight: 300,
+  },
+
   /* END CONTAINERS */
 
   descriptionTextTitle: {
@@ -60,7 +67,6 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'flex-end',
-
     flex: 1,
     //backgroundColor: 'red',
   },

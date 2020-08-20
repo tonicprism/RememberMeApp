@@ -31,7 +31,7 @@ export default function Item({
       <TouchableOpacity onPress={handlerModal}>
         {/* BEGIN ITEM HEADER */}
         <ItemHeader
-          title={`Em ${timeToRemember} minutos`}
+          title={`In ${timeToRemember} minutes`}
           iconName="md-time"
           color="#195C92"
           fontSize={30}
@@ -80,7 +80,7 @@ export default function Item({
           iconName="trash"
           iconSize={35}
           iconColor="red"
-          style={{ marginBottom: 13 }}
+          style={{ marginBottom: 9 }}
           onPress={deleteButton}
         />
       </View>

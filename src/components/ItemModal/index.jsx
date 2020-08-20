@@ -34,16 +34,16 @@ export default function ItemModal({
         <Text style={styles.modalHeaderTitle}>Editar Memória</Text>
       </View>
 
-      <Text style={{ color: '#FFF' }}>Titulo da memoria</Text>
+      <Text style={{ color: '#FFF' }}>Memory Title</Text>
       <Input
         onChangeText={(text) => setTitleOfMemory(text)}
         keyboardType="default"
         defaultValue={titleOfMemory}
         maxLength={100}
-        placeholder="Titulo da lembrança"
+        placeholder="Memory title?"
         clearTextOnFocus={true}
       />
-      <Text style={{ color: '#fff' }}>Data de criação</Text>
+      <Text style={{ color: '#fff' }}>Creation date</Text>
       <Input
         onChangeText={(text) => setContentOfMemory(text)}
         keyboardType="default"
@@ -51,7 +51,7 @@ export default function ItemModal({
         maxLength={100}
         clearTextOnFocus={true}
       />
-      <Text style={{ color: '#fff' }}>Hora de criação</Text>
+      <Text style={{ color: '#fff' }}>Creation hour</Text>
       <Input
         onChangeText={(text) => setContentOfMemory(text)}
         keyboardType="default"
@@ -59,23 +59,23 @@ export default function ItemModal({
         maxLength={100}
         clearTextOnFocus={true}
       />
-      <Text style={{ color: '#fff' }}>Conteúdo da memoria</Text>
+      <Text style={{ color: '#fff' }}>Memory content</Text>
       <Input
         onChangeText={(text) => setContentOfMemory(text)}
         keyboardType="default"
         defaultValue={contentOfMemory}
         maxLength={100}
-        placeholder="Conteúdo da lembrança?"
+        placeholder="Content of memory?"
         clearTextOnFocus={true}
       />
       <Button
         style={{ padding: '3%', borderColor: 'yellow', color: 'yellow' }}
         onPress={confirmChangesButton}
       >
-        Editar Memória
+        Edit this memory
       </Button>
       <Button style={{ padding: '3%', borderColor: 'red', color: 'red' }} onPress={deleteButton}>
-        Delete essa memoria
+        Delete this memory
       </Button>
     </Modal>
   );
