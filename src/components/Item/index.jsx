@@ -37,9 +37,11 @@ export default function Item({
         {/* BEGIN ITEM HEADER */}
         <ItemHeader
           title={`In ${timeToRemember} minutes`}
-          iconName="md-time"
+          iconFamily="EvilIcons"
+          iconName="trash"
+          fontSize={35}
           color="#195C92"
-          fontSize={30}
+          onPress={deleteButton}
         />
         {/* END ITEM HEADER */}
 
@@ -70,18 +72,7 @@ export default function Item({
 
         {/* END ITEM BODY */}
       </TouchableOpacity>
-      {/* BEGIN BUTTONS CONTAINER */}
-      <View style={[styles.buttonsContainerItem]}>
-        <Button
-          iconFamily="EvilIcons"
-          iconName="trash"
-          iconSize={35}
-          iconColor="red"
-          style={{ marginBottom: 9 }}
-          onPress={deleteButton}
-        />
-      </View>
-      {/* END BUTTONS CONTAINER */}
+
       {/* END ITEM CONTENT */}
     </View>
   ) : (
@@ -91,9 +82,11 @@ export default function Item({
         {/* BEGIN ITEM HEADER */}
         <ItemHeader
           title={`In ${timeToRemember} minutes`}
-          iconName="md-time"
-          color="#195C92"
+          iconFamily="AntDesign"
+          iconName="checkcircleo"
           fontSize={30}
+          color="#195C92"
+          onPress={confirmButton}
         />
         {/* END ITEM HEADER */}
 
@@ -124,18 +117,6 @@ export default function Item({
 
         {/* END ITEM BODY */}
       </TouchableOpacity>
-      {/* BEGIN BUTTONS CONTAINER */}
-      <View style={[styles.buttonsContainerItem]}>
-        <Button
-          iconFamily="AntDesign"
-          iconName="checkcircleo"
-          iconSize={20}
-          iconColor="green"
-          style={{ marginBottom: 9 }}
-          onPress={confirmButton}
-        />
-      </View>
-      {/* END BUTTONS CONTAINER */}
       {/* END ITEM CONTENT */}
     </View>
   );

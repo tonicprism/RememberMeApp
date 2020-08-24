@@ -224,7 +224,6 @@ export default function Home() {
                     removeOneItem(item.id);
                     setVisibleNullModalMemoryDeletedItem(!visibleNullModalMemoryDeletedItem);
                   }}
-                  deleteButton={alertTest1}
                   handlerModal={() => {
                     getOneItem(item.id);
                     handlerOpenItemModal();
