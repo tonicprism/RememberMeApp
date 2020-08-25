@@ -6,7 +6,7 @@
 
 <p align="center">
 	<a href="https://www.linkedin.com/in/luiz-gustavo-56146b1a5/">
-      <img alt="Rafael Goulart" src="https://img.shields.io/badge/-LuizGustavo-195C92?style=flat&logo=Linkedin&logoColor=white" />
+      <img alt="Luiz Gustavo" src="https://img.shields.io/badge/-LuizGustavo-195C92?style=flat&logo=Linkedin&logoColor=white" />
    </a>
   <img alt="Repository size" src="https://img.shields.io/github/repo-size/tonicprism/RememberMeApp?color=195C92">
 
