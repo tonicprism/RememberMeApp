@@ -11,7 +11,7 @@
   <img alt="Repository size" src="https://img.shields.io/github/repo-size/tonicprism/RememberMeApp?color=195C92">
 
   <img src="https://img.shields.io/badge/version-1.0.0-195C92.svg?cacheSeconds=2592000" />
-  <a href="https://github.com/tonicprism/RandomNumberApp#readme">
+  <a href="https://github.com/tonicprism/remember-me-app#readme">
     <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-195C92.svg" target="_blank" />
   </a>
    <a href="https://github.com/tonicprism/proffy/commits/master">
